@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atividade Avaliativa - Química Orgânica</title>
+    <title>Atividade Avaliativa de Ciências</title>
     <style>
         /* Estilos CSS personalizados */
         body {
@@ -46,20 +46,6 @@
             box-sizing: border-box;
             font-size: 14px;
         }
-        #nome, #serie {
-            appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7"><path fill="%23000000" d="M0 0l5 5 5-5H0z"/></svg>');
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 10px 7px;
-            padding-right: 30px;
-            cursor: pointer;
-        }
-        select:focus, input[type="date"]:focus, textarea:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-        }
         .submit-button {
             margin: 30px auto;
             display: block;
@@ -78,58 +64,24 @@
             box-shadow: 0 2px #666;
             transform: translateY(4px);
         }
-        .feedback-container {
-            display: none;
-            margin-top: 20px;
-            background-color: #ffffff;
-            color: #333333;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .questoes-container > div {
-            margin-bottom: 30px;
-        }
-        .questoes-container label {
-            display: block;
-            line-height: 1.6;
-            background-color: #2f4f4f;
-            padding: 10px;
-            border-radius: 5px;
-            color: #ffffff;
-            margin-bottom: 10px;
-            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-        }
-        .questoes-container textarea {
-            background-color: #ffffff;
-            color: #000000;
-            border: 1px solid #ccc;
-            resize: vertical;
-            min-height: 100px;
-        }
-        @media (max-width: 768px) {
-            .cabecalho {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
 <body>
 
     <div class="form-container">
         <div class="school-header">
-            <h2>E.E. MARIA LEONI</h2>
+            <h2>E.E.WANDA MASCAGNI DE SÁ</h2>
         </div>
         <div class="header">
-            <h1>Atividade Avaliativa - Química Orgânica</h1>
+            <h1>Atividade Avaliativa De Ciências</h1>
         </div>
 
-        <form id="formulario">
+        <form id="Respostas">
             <div class="cabecalho">
                 <div>
                     <label for="nome">Nome:</label>
                     <select id="nome" name="nome" required>
                         <option value="" disabled selected>Selecione seu nome</option>
-                        <!-- Lista completa de nomes dos alunos -->
                         <option>ALÍCIA LARA DE OLIVEIRA RICCI
 <option>ANGELINA MUNHOZ NAGLIATI</option>
 <option>ANTONIO AUGUSTO CAMPOS DE FREITAS RODRIGUES</option>
@@ -200,7 +152,6 @@
 <option>MARCELO HENRIQUE ZONIN PEREIRA</option>
 <option>KAUAN REPULIO DE LIMA</option>
 <option>NICOLE MATOS PEREIRA</option>
-
                     </select>
                 </div>
 
@@ -220,7 +171,8 @@
             </div>
 
             <div class="questoes-container">
-<div>
+                <div>
+                    <div>
                     <label for="resposta1"><B>1.<B> Ciclo de Vida do Sol e Impactos na Terra
 
 A partir da compreensão de que o Sol também passará por transformações ao longo de seu ciclo de vida, como sua futura transformação em anã branca pode impactar o equilíbrio do Sistema Solar e a vida na Terra?
@@ -325,22 +277,19 @@ Aborde questões como desigualdade de acesso, uso sustentável de recursos e coo
 As auroras polares são fenômenos fascinantes que despertam curiosidade científica e possuem significados culturais para muitos povos. Como a ciência e a cultura se complementam na interpretação desse fenômeno natural?
 Discuta como o conhecimento científico e as tradições culturais podem coexistir na compreensão dos fenômenos naturais.
 
-</label>
-                    <textarea id="resposta10" name="resposta10" required>
-                    </textarea>
-                </div>
+            </div>
 
             <button type="submit" class="submit-button">Enviar Respostas</button>
         </form>
 
-        <div id="feedback-container" class="feedback-container">
+        <div id="feedback-container" class="feedback-container" style="display: none;">
             <h2>Feedback da Autocorreção</h2>
             <div id="feedback-content"></div>
         </div>
     </div>
 
     <script>
-        document.getElementById('formulario').addEventListener('submit', async (event) => {
+        document.getElementById('Respostas').addEventListener('submit', async (event) => {
             event.preventDefault();
 
             const respostas = Array.from({ length: 10 }, (_, i) =>
@@ -351,15 +300,12 @@ Discuta como o conhecimento científico e as tradições culturais podem coexist
                 nome: document.getElementById('nome').value,
                 serie: document.getElementById('serie').value,
                 data: document.getElementById('data').value,
+                respostas
             };
-
-            respostas.forEach((resposta, index) => {
-                data[`resposta${index + 1}`] = resposta;
-            });
 
             try {
                 const response = await fetch(
-                    'https://script.google.com/macros/s/AKfycbwq9c5kRezcdbSRW1goGT3xD9xeFWMlElG7GdDF5MIV2CycyBVkcB7Og686gSuNQwQ/exec',
+                    'https://script.google.com/macros/s/AKfycbzmidkOccdi7FEUZbcSBlxXvKlwYOodfcQM-p5Nd-gVI8AXbKJq2hxi7wcC_1UChaj/exec',
                     {
                         method: 'POST',
                         headers: {
@@ -372,17 +318,14 @@ Discuta como o conhecimento científico e as tradições culturais podem coexist
                 const result = await response.json();
 
                 if (result.result === 'success') {
-                    let feedback = respostas.map(
-                        (res, i) =>
-                            `<p><strong>Questão ${i + 1}:</strong> ${
-                                result.feedback?.[i]?.feedback || 'Sem feedback.'
-                            }</p>`
+                    let feedback = respostas.map((res, i) =>
+                        `<p><strong>Questão ${i + 1}:</strong> ${result.feedback?.[i]?.feedback || 'Sem feedback.'}</p>`
                     ).join('');
 
                     document.getElementById('feedback-content').innerHTML = feedback;
                     document.getElementById('feedback-container').style.display = 'block';
 
-                    document.getElementById('formulario').reset();
+                    document.getElementById('Respostas').reset();
                 } else {
                     alert(`Erro ao enviar os dados: ${result.error}`);
                 }
